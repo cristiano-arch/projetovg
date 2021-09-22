@@ -23,8 +23,8 @@ public class ProjetovgApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Item sorrowblade = new Item(null, "Sorrowblade", "+120 Poder de Arma", 3, 3100.0);
-		Item shatterglass = new Item(null, "Shatterglass", "+130 Poder de Cristal", 3, 3000.0);
+		Item sorrowblade = new Item(null, "Sorrowblade", "+120 Poder de Arma", 3, 3100.00);
+		Item shatterglass = new Item(null, "Shatterglass", "+130 Poder de Cristal", 3, 3000.00);
 		
 		itemRepository.saveAll(Arrays.asList(sorrowblade, shatterglass));
 	}
