@@ -31,6 +31,11 @@ public class ItemService {
 		return repo.save(obj);
 	}
 	
+	public void delete(Integer id) {
+		find(id);
+		repo.deleteById(id);
+	}
+	
 	public Item fromDTO(ItemDTO objDto) {
 		return new Item(objDto.getId(), objDto.getNome(), objDto.getDescricao(), objDto.getNivel(), objDto.getPreco());
 	}
