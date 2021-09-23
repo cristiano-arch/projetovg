@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.andcris.projetovg.domain.Item;
+import com.andcris.projetovg.dto.ItemDTO;
 import com.andcris.projetovg.repositories.ItemRepository;
 import com.andcris.projetovg.services.exceptions.ObjectNotFoundException;
 
@@ -23,5 +24,14 @@ public class ItemService {
 	public Item find(Integer id) {
 		Optional<Item> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Item não encontrado Id: " + id + ", Tipo: " + Item.class.getName()));
+	}
+	
+	public Item insert(Item obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+	public Item fromDTO(ItemDTO objDto) {
+		return new Item(objDto.getId(), objDto.getNome(), objDto.getDescricao(), objDto.getNivel(), objDto.getPreco());
 	}
 }
