@@ -36,6 +36,20 @@ public class ItemService {
 		repo.deleteById(id);
 	}
 	
+	public Item update(Item obj) {
+		Item newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
+	
+	private void updateData(Item newObj, Item obj) {
+		newObj.setId(obj.getId());
+		newObj.setNome(obj.getNome());
+		newObj.setDescricao(obj.getDescricao());
+		newObj.setNivel(obj.getNivel());
+		newObj.setPreco(obj.getPreco());
+	}
+
 	public Item fromDTO(ItemDTO objDto) {
 		return new Item(objDto.getId(), objDto.getNome(), objDto.getDescricao(), objDto.getNivel(), objDto.getPreco());
 	}
