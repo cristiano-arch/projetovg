@@ -1,11 +1,16 @@
 package com.andcris.projetovg.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Item implements Serializable{
@@ -18,6 +23,12 @@ public class Item implements Serializable{
 	private String descricao;
 	private Integer nivel;
 	private Double preco;
+	
+	@ManyToMany
+	@JoinTable(name="ITEM_CATEGORIA",
+			joinColumns = @JoinColumn(name="item_id"),
+			inverseJoinColumns = @JoinColumn(name="categoria_id"))
+	private List<Categoria> categorias = new ArrayList<>();
 	
 	public Item() {
 	}
@@ -69,6 +80,14 @@ public class Item implements Serializable{
 
 	public void setPreco(Double preco) {
 		this.preco = preco;
+	}
+
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
 	@Override
