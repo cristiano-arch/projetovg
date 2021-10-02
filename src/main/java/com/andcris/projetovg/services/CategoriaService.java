@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.andcris.projetovg.domain.Categoria;
 import com.andcris.projetovg.dto.CategoriaDTO;
@@ -28,6 +29,7 @@ public class CategoriaService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 	}
 	
+	@Transactional
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
 		return repo.save(obj);

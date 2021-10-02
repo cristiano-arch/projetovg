@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.andcris.projetovg.domain.Item;
 import com.andcris.projetovg.dto.ItemDTO;
@@ -26,6 +27,7 @@ public class ItemService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Item não encontrado Id: " + id + ", Tipo: " + Item.class.getName()));
 	}
 	
+	@Transactional
 	public Item insert(Item obj) {
 		obj.setId(null);
 		return repo.save(obj);
