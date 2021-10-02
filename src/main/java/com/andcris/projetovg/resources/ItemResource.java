@@ -55,7 +55,7 @@ public class ItemResource {
 	}
 	
 	@PutMapping(value="/{id}")
-	public ResponseEntity<ItemDTO> update(@PathVariable Integer id, @RequestBody ItemDTO objDto) {
+	public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody ItemDTO objDto) {
 		objDto.setId(id);
 		Item obj = service.fromDTO(objDto);
 		obj = service.update(obj);
