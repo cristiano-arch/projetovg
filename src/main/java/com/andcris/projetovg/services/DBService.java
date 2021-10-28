@@ -26,10 +26,13 @@ public class DBService {
 		
 		Categoria arma = new Categoria(null, "Arma");
 		arma.setItens(Arrays.asList(sorrowblade));
-		Categoria cristal= new Categoria(null, "Cristal");
+		Categoria cristal = new Categoria(null, "Cristal");
 		arma.setItens(Arrays.asList(shatterglass));
+		Categoria defesa = new Categoria(null, "Defesa");
+		Categoria utilitario = new Categoria(null, "Utilitário");
+		Categoria outros = new Categoria(null, "Outros");
 		
-		categoriaRepository.saveAll(Arrays.asList(arma, cristal));
+		categoriaRepository.saveAll(Arrays.asList(arma, cristal, defesa, utilitario, outros));
 		
 		sorrowblade.setCategorias(Arrays.asList(arma));
 		shatterglass.setCategorias(Arrays.asList(cristal));
