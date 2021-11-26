@@ -44,6 +44,10 @@ public class ItemService {
 		return repo.save(newObj);
 	}
 	
+	public List<Item> findByNome(String text) {
+		return repo.findByNomeContainingIgnoreCase(text);
+	}
+	
 	private void updateData(Item newObj, Item obj) {
 		newObj.setId(obj.getId());
 		newObj.setNome(obj.getNome());

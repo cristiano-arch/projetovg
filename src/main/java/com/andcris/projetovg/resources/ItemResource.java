@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.andcris.projetovg.domain.Item;
 import com.andcris.projetovg.dto.ItemDTO;
+import com.andcris.projetovg.resources.util.URL;
 import com.andcris.projetovg.services.ItemService;
 
 @RestController
@@ -60,5 +62,12 @@ public class ItemResource {
 		Item obj = service.fromDTO(objDto);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping(value="nomesearch")
+	public ResponseEntity<List<Item>> findByNome(@RequestParam(value="text", defaultValue="") String text) {
+		text = URL.decodeParam(text);
+		List<Item> list = service.findByNome(text);
+		return ResponseEntity.ok().body(list);
 	}
 }
